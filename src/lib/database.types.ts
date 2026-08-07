@@ -2,7 +2,7 @@ export type SubscriptionType = 'nomad' | 'full_time'
 export type UserRole = 'member' | 'admin'
 export type RoomStatus = 'available' | 'unavailable'
 export type ReservationStatus = 'confirmed' | 'cancelled'
-export type TransactionType = 'monthly_renewal' | 'booking_debit' | 'cancellation_refund'
+export type TransactionType = 'monthly_renewal' | 'booking_debit' | 'cancellation_refund' | 'credit_purchase'
 
 export interface Profile {
   id: string

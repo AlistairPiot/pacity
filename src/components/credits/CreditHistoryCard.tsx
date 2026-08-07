@@ -1,27 +1,30 @@
 import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { ArrowDownCircle, ArrowUpCircle, RotateCcw, Coins } from 'lucide-react'
+import { ArrowDownCircle, ArrowUpCircle, RotateCcw, Coins, Sparkles } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import type { CreditTransaction } from '@/lib/database.types'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { BuyCreditsDialog } from '@/components/credits/BuyCreditsDialog'
 import { cn } from '@/lib/utils'
 
 const TYPE_LABEL: Record<CreditTransaction['type'], string> = {
   monthly_renewal: 'Renouvellement mensuel',
   booking_debit: 'Réservation',
   cancellation_refund: 'Remboursement',
+  credit_purchase: 'Achat de crédits',
 }
 
 const TYPE_ICON: Record<CreditTransaction['type'], typeof ArrowUpCircle> = {
   monthly_renewal: ArrowUpCircle,
   booking_debit: ArrowDownCircle,
   cancellation_refund: RotateCcw,
+  credit_purchase: Sparkles,
 }
 
 export function CreditHistoryCard() {
-  const { session, balance } = useAuth()
+  const { session, profile, balance } = useAuth()
   const [transactions, setTransactions] = useState<CreditTransaction[]>([])
 
   useEffect(() => {
@@ -43,6 +46,11 @@ export function CreditHistoryCard() {
           <Coins className="size-4" /> {balance}
         </div>
       </CardHeader>
+      {profile?.subscription_type === 'full_time' && (
+        <div className="px-6">
+          <BuyCreditsDialog />
+        </div>
+      )}
       <CardContent className="pb-6">
         {transactions.length === 0 ? (
           <p className="text-sm text-muted-foreground">Aucune transaction pour le moment.</p>
