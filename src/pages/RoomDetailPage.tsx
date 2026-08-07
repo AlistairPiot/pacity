@@ -5,7 +5,7 @@ import { fr } from 'date-fns/locale'
 import { ArrowLeft, Users, Zap, CheckCircle2, XCircle } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
-import type { Reservation, Room } from '@/lib/database.types'
+import type { Room } from '@/lib/database.types'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { SlotCalendar } from '@/components/booking/SlotCalendar'
@@ -21,7 +21,7 @@ export function RoomDetailPage() {
 
   const [room, setRoom] = useState<Room | null>(null)
   const [selectedDate, setSelectedDate] = useState(() => startOfDay(new Date()))
-  const [reservations, setReservations] = useState<Reservation[]>([])
+  const [bookings, setBookings] = useState<{ start_time: string; duration_hours: number }[]>([])
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
@@ -42,13 +42,11 @@ export function RoomDetailPage() {
   const loadReservations = useCallback(async () => {
     if (!id) return
     const dateStr = format(selectedDate, 'yyyy-MM-dd')
-    const { data } = await supabase
-      .from('reservations')
-      .select('*')
-      .eq('room_id', id)
-      .eq('date', dateStr)
-      .eq('status', 'confirmed')
-    setReservations(data ?? [])
+    const { data } = await supabase.rpc('get_room_bookings', {
+      p_room_id: id,
+      p_date: dateStr,
+    })
+    setBookings(data ?? [])
   }, [id, selectedDate])
 
   useEffect(() => {
@@ -62,11 +60,11 @@ export function RoomDetailPage() {
 
   const bookedHours = useMemo(() => {
     const set = new Set<number>()
-    for (const r of reservations) {
-      for (const h of reservationHourRange(r.start_time, r.duration_hours)) set.add(h)
+    for (const b of bookings) {
+      for (const h of reservationHourRange(b.start_time, b.duration_hours)) set.add(h)
     }
     return set
-  }, [reservations])
+  }, [bookings])
 
   const pastHours = useMemo(() => {
     const set = new Set<number>()
