@@ -65,7 +65,7 @@ export function LoginPage() {
               />
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="mt-2 w-full" size="lg" disabled={submitting}>
+            <Button type="submit" className="w-full" size="lg" disabled={submitting}>
               {submitting ? 'Connexion...' : 'Se connecter'}
             </Button>
           </form>
