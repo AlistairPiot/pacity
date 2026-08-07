@@ -30,10 +30,10 @@ export function AppLayout() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 font-semibold">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-[oklch(0.42_0.24_293)] text-primary-foreground shadow-sm shadow-primary/40">
                 <Building2 className="size-4.5" />
               </div>
-              <span className="text-lg tracking-tight">Pacity</span>
+              <span className="font-display text-lg tracking-tight">Pacity</span>
             </div>
             <nav className="hidden items-center gap-1 sm:flex">
               <NavLink to="/" end className={navLinkClass}>
@@ -53,7 +53,10 @@ export function AppLayout() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 rounded-full border bg-secondary/60 px-3 py-1.5 text-sm font-medium">
+            <div
+              key={balance}
+              className="animate-scale-pop flex items-center gap-1.5 rounded-full border border-primary/20 bg-gradient-to-r from-accent to-secondary/60 px-3 py-1.5 text-sm font-medium shadow-sm"
+            >
               <Coins className="size-4 text-primary" />
               <span>{balance}</span>
               <span className="hidden text-muted-foreground sm:inline">crédits</span>

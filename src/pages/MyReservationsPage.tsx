@@ -62,8 +62,8 @@ export function MyReservationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Mes réservations</h1>
+      <div className="animate-fade-in-up">
+        <h1 className="font-display text-2xl font-semibold tracking-tight">Mes réservations</h1>
         <p className="mt-1 text-muted-foreground">Retrouve tes réservations à venir et passées.</p>
       </div>
 
@@ -113,11 +113,11 @@ function ReservationList({
 
   return (
     <div className="flex flex-col gap-3">
-      {items.map((r) => (
-        <Card key={r.id} className="py-0">
+      {items.map((r, i) => (
+        <Card key={r.id} className="animate-fade-in-up py-0" style={{ animationDelay: `${i * 40}ms` }}>
           <CardContent className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
-              <div className="hidden size-14 shrink-0 overflow-hidden rounded-lg bg-muted sm:block">
+              <div className="hidden size-14 shrink-0 overflow-hidden rounded-lg bg-muted shadow-sm sm:block">
                 <img src={r.room.photo_url ?? ''} alt={r.room.name} className="size-full object-cover" />
               </div>
               <div className="flex flex-col gap-1">

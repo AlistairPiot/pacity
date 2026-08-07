@@ -72,23 +72,23 @@ export function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-2">
-        <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+      <div className="animate-fade-in-up flex items-center gap-2">
+        <div className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 text-primary">
           <ShieldCheck className="size-5" />
         </div>
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Dashboard admin</h1>
+          <h1 className="font-display text-2xl font-semibold tracking-tight">Dashboard admin</h1>
           <p className="text-muted-foreground">Toutes les réservations de Pacity.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <StatCard label="Réservations totales" value={stats.total} />
-        <StatCard label="Confirmées" value={stats.confirmed} />
-        <StatCard label="Crédits engagés" value={stats.creditsBooked} />
+        <StatCard label="Réservations totales" value={stats.total} delay={0} />
+        <StatCard label="Confirmées" value={stats.confirmed} delay={60} />
+        <StatCard label="Crédits engagés" value={stats.creditsBooked} delay={120} />
       </div>
 
-      <Card>
+      <Card className="animate-fade-in-up" style={{ animationDelay: '140ms' }}>
         <CardHeader>
           <CardTitle className="text-base">Filtres</CardTitle>
         </CardHeader>
@@ -140,7 +140,7 @@ export function AdminDashboardPage() {
         </CardContent>
       </Card>
 
-      <Card className="overflow-hidden py-0">
+      <Card className="animate-fade-in-up overflow-hidden py-0" style={{ animationDelay: '200ms' }}>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="border-b bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
@@ -169,7 +169,7 @@ export function AdminDashboardPage() {
                 </tr>
               ) : (
                 filtered.map((r) => (
-                  <tr key={r.id} className="border-b last:border-0 hover:bg-muted/30">
+                  <tr key={r.id} className="border-b transition-colors last:border-0 hover:bg-accent/40">
                     <td className="px-4 py-3 font-medium">{r.member.name}</td>
                     <td className="px-4 py-3">{r.room.name}</td>
                     <td className="px-4 py-3 capitalize">
@@ -208,12 +208,12 @@ export function AdminDashboardPage() {
   )
 }
 
-function StatCard({ label, value }: { label: string; value: number }) {
+function StatCard({ label, value, delay = 0 }: { label: string; value: number; delay?: number }) {
   return (
-    <Card>
+    <Card className="animate-fade-in-up" style={{ animationDelay: `${delay}ms` }}>
       <CardContent className="py-5">
         <p className="text-sm text-muted-foreground">{label}</p>
-        <p className="mt-1 text-3xl font-semibold tracking-tight">{value}</p>
+        <p className="font-display mt-1 text-3xl font-semibold tracking-tight">{value}</p>
       </CardContent>
     </Card>
   )

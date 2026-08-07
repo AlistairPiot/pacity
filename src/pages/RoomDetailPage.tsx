@@ -117,8 +117,8 @@ export function RoomDetailPage() {
       </Button>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
-        <div className="flex flex-col gap-4">
-          <div className="aspect-[4/3] overflow-hidden rounded-xl border bg-muted">
+        <div className="animate-fade-in-up flex flex-col gap-4">
+          <div className="aspect-4/3 overflow-hidden rounded-xl border shadow-sm">
             <img src={room.photo_url ?? ''} alt={room.name} className="size-full object-cover" />
           </div>
           <div className="flex flex-col gap-3 rounded-xl border bg-card p-5 shadow-sm">
@@ -151,7 +151,7 @@ export function RoomDetailPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="animate-fade-in-up flex flex-col gap-5" style={{ animationDelay: '80ms' }}>
           <div>
             <h2 className="mb-3 text-sm font-medium text-muted-foreground">Choisis une date</h2>
             <div className="flex gap-2 overflow-x-auto pb-2">
@@ -162,10 +162,10 @@ export function RoomDetailPage() {
                     key={d.toISOString()}
                     onClick={() => setSelectedDate(d)}
                     className={cn(
-                      'flex min-w-16 flex-col items-center rounded-lg border px-3 py-2 text-sm transition-colors',
+                      'flex min-w-16 flex-col items-center rounded-lg border px-3 py-2 text-sm transition-all duration-200',
                       active
-                        ? 'border-primary bg-primary text-primary-foreground shadow-sm'
-                        : 'border-border bg-card hover:bg-accent',
+                        ? 'scale-105 border-primary bg-gradient-to-br from-primary to-[oklch(0.44_0.23_293)] text-primary-foreground shadow-md shadow-primary/30'
+                        : 'border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:bg-accent hover:shadow-sm',
                     )}
                   >
                     <span className="text-xs capitalize opacity-80">{format(d, 'EEE', { locale: fr })}</span>
@@ -179,7 +179,7 @@ export function RoomDetailPage() {
           {feedback && (
             <div
               className={cn(
-                'flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium',
+                'animate-fade-in-up flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium',
                 feedback.type === 'success' ? 'bg-success/15 text-success' : 'bg-destructive/10 text-destructive',
               )}
             >

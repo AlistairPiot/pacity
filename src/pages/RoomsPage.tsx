@@ -24,9 +24,10 @@ export function RoomsPage() {
   return (
     <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1fr_320px]">
       <div className="flex flex-col gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Bonjour {profile?.name?.split(' ')[0]} 👋
+        <div className="animate-fade-in-up">
+          <h1 className="font-display text-2xl font-semibold tracking-tight">
+            Bonjour {profile?.name?.split(' ')[0]}{' '}
+            <span className="inline-block animate-[wave_2s_ease-in-out_1]">👋</span>
           </h1>
           <p className="mt-1 text-muted-foreground">
             Choisis une salle pour consulter le calendrier et réserver un créneau.
@@ -36,19 +37,19 @@ export function RoomsPage() {
         {loading ? (
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="aspect-[4/3] animate-pulse rounded-xl bg-muted" />
+              <div key={i} className="aspect-4/3 skeleton-shimmer rounded-xl" />
             ))}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {rooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
+            {rooms.map((room, i) => (
+              <RoomCard key={room.id} room={room} index={i} />
             ))}
           </div>
         )}
       </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="animate-fade-in-up flex flex-col gap-5" style={{ animationDelay: '120ms' }}>
         <CreditHistoryCard />
       </div>
     </div>

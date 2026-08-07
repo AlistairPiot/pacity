@@ -124,9 +124,9 @@ export function SlotCalendar({
                   'cursor-not-allowed border-border/70 text-muted-foreground/70 line-through decoration-muted-foreground/50',
                 !unavailable &&
                   !selected &&
-                  'cursor-pointer border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:border-primary/60 hover:bg-accent hover:shadow-md',
+                  'cursor-pointer border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:border-primary/60 hover:bg-accent hover:shadow-md active:translate-y-0 active:scale-[0.98]',
                 selected &&
-                  'cursor-pointer border-primary bg-primary text-primary-foreground shadow-md ring-2 ring-primary/30',
+                  'cursor-pointer border-primary bg-primary text-primary-foreground shadow-[0_10px_24px_-8px] shadow-primary/60 ring-2 ring-primary/30 scale-[1.01]',
               )}
             >
               <span className="flex items-center gap-2">
@@ -157,7 +157,12 @@ export function SlotCalendar({
         </span>
       </div>
 
-      <div className="flex flex-col gap-4 rounded-xl border bg-gradient-to-br from-accent/40 to-transparent p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div
+        className={cn(
+          'flex flex-col gap-4 rounded-xl border bg-gradient-to-br from-accent/40 to-transparent p-5 transition-shadow duration-300 sm:flex-row sm:items-center sm:justify-between',
+          duration > 0 && !insufficientBalance && canBook && 'border-primary/40 shadow-[0_0_0_4px] shadow-primary/10',
+        )}
+      >
         <div className="flex flex-col gap-1">
           <span className="text-sm text-muted-foreground">
             {duration === 0
@@ -166,7 +171,7 @@ export function SlotCalendar({
                 : 'Sélectionne un ou plusieurs créneaux libres et contigus'
               : `${duration} heure${duration > 1 ? 's' : ''} sélectionnée${duration > 1 ? 's' : ''} · ${formatHourLabel(selection[0])} – ${formatHourLabel(selection[0] + duration)}`}
           </span>
-          <div className="flex items-center gap-2 text-2xl font-semibold tracking-tight">
+          <div key={cost} className="animate-scale-pop flex origin-left items-center gap-2 text-2xl font-semibold tracking-tight">
             <Coins className="size-5 text-primary" />
             {cost} <span className="text-base font-normal text-muted-foreground">crédit{cost > 1 ? 's' : ''}</span>
           </div>
@@ -176,7 +181,7 @@ export function SlotCalendar({
           size="lg"
           disabled={confirmDisabled}
           onClick={() => selection.length > 0 && onConfirm(selection[0], duration)}
-          className="min-w-48"
+          className="min-w-48 active:scale-[0.97]"
         >
           {submitting ? (
             <>
