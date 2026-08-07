@@ -48,7 +48,7 @@ export function SlotCalendar({
     return () => window.removeEventListener('mouseup', onUp)
   }, [])
 
-  const isUnavailable = (h: number) => bookedHours.has(h) || pastHours.has(h)
+  const isUnavailable = (h: number) => bookedHours.has(h) || pastHours.has(h) || !canBook
 
   function contiguousFreeRange(a: number, b: number): number[] | null {
     const lo = Math.min(a, b)
@@ -110,13 +110,21 @@ export function SlotCalendar({
               disabled={unavailable}
               onMouseDown={() => handleMouseDown(h)}
               onMouseEnter={() => handleMouseEnter(h)}
+              style={
+                unavailable
+                  ? {
+                      backgroundImage:
+                        'repeating-linear-gradient(135deg, var(--color-muted) 0px, var(--color-muted) 6px, color-mix(in oklch, var(--color-muted), black 4%) 6px, color-mix(in oklch, var(--color-muted), black 4%) 12px)',
+                    }
+                  : undefined
+              }
               className={cn(
                 'group relative flex h-14 items-center justify-between rounded-lg border px-4 text-sm font-medium transition-all duration-150',
                 unavailable &&
-                  'cursor-not-allowed border-border/60 bg-muted text-muted-foreground/60 line-through decoration-muted-foreground/40',
+                  'cursor-not-allowed border-border/70 text-muted-foreground/70 line-through decoration-muted-foreground/50',
                 !unavailable &&
                   !selected &&
-                  'cursor-pointer border-border bg-card hover:border-primary/50 hover:bg-accent hover:shadow-sm',
+                  'cursor-pointer border-border bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:border-primary/60 hover:bg-accent hover:shadow-md',
                 selected &&
                   'cursor-pointer border-primary bg-primary text-primary-foreground shadow-md ring-2 ring-primary/30',
               )}
@@ -125,7 +133,7 @@ export function SlotCalendar({
                 <span
                   className={cn(
                     'size-1.5 rounded-full',
-                    booked ? 'bg-muted-foreground/40' : selected ? 'bg-primary-foreground' : 'bg-success',
+                    unavailable ? 'bg-muted-foreground/50' : selected ? 'bg-primary-foreground' : 'bg-success',
                   )}
                 />
                 {formatHourLabel(h)} – {formatHourLabel(h + 1)}
@@ -135,6 +143,18 @@ export function SlotCalendar({
             </button>
           )
         })}
+      </div>
+
+      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5">
+          <span className="size-2 rounded-full bg-success" /> Libre
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-2 rounded-full bg-primary" /> Sélectionné
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-2 rounded-full bg-muted-foreground/50" /> Indisponible
+        </span>
       </div>
 
       <div className="flex flex-col gap-4 rounded-xl border bg-gradient-to-br from-accent/40 to-transparent p-5 sm:flex-row sm:items-center sm:justify-between">
