@@ -151,8 +151,8 @@ export function RoomDetailPage() {
           </div>
         </div>
 
-        <div className="animate-fade-in-up flex flex-col gap-5" style={{ animationDelay: '80ms' }}>
-          <div>
+        <div className="animate-fade-in-up flex min-w-0 flex-col gap-5" style={{ animationDelay: '80ms' }}>
+          <div className="min-w-0">
             <h2 className="mb-3 text-sm font-medium text-muted-foreground">Choisis une date</h2>
             <div className="flex gap-2 overflow-x-auto pb-2">
               {days.map((d) => {
