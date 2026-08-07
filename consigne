@@ -1,0 +1,90 @@
+# 👩‍❤️‍👨 Nocode Factory & You
+
+---
+
+### Context
+
+Nocode Factory is one of the leading european NoCode & LowCode agencies.
+
+We help our clients to deliver custom products using nocode and lowcode solutions.
+
+We work both for **SMB’**s and fast growing **Scaleups** (`Amenitiz`, `Brut`,`Sunday`, `AdaTechSchool`,etc) and **Large companies** (`BPI`, `Ornikar`, `L’équipe`, `Blablacar` etc).
+
+As the new LowCode developper @Nocode Factory, you are the main touchpoint between the client’s and NocodeFactory. Your are a key player in the organisation as the success of the project highly depends on you :) **#pressure**
+
+### Your goals
+
+- [ ]  Maximise the customer satisfaction, within a limited scope.
+- [ ]  Make sure your team keep the timing estimated at the beginning of the project.
+- [ ]  Make sure that the client fully trust your expertise.
+
+# 👨‍🎨 The Case Study : Le Cas Pacity
+
+---
+
+### Your Mission, if you accept it !
+
+This case is very useful to assess your ability to organise, test and learn quickly some simple but generalist nocode usecases. It will show your adaptability against uncertain or unknown situations.
+
+<aside>
+💼 One of our client ask us :
+
+**Mathieu, Founder @Pacity**
+
+Bonjour, Pacity est un concept de cowrking citadin pour entreprises et freelances qui cherchent un cadre sympa et bienveillant pour travailler :
+
+Notre espace de coworking en pleine croissance.
+
+L’entreprise souhaite lancer une **application interne** permettant aux membres de réserver des salles de réunion.
+
+Aujourd’hui, les réservations se font via Google Calendar + messages Slack, ce qui génère des erreurs, des conflits d’horaires, et des oublis de facturation. 🌪️ + Tous les membres n’ont pas forcément slack
+
+On souhaite donc **centraliser et automatiser** les réservations.
+
+Votre mission : **concevoir et builder un MVP fonctionnel qui permet de gérer la reservations des salles de réunion dans le coworking**
+
+Users stories à adresser pour le MVP : 
+
+En tant que client du cowork
+
+- Je dois pouvoir voir les salles disponibles, et reserver une salle
+- Je dois pouvoir voir la salle et ses caractéristiques
+- Je dois pouvoir suivre mon solde de résa
+- Je dois pouvoir accéder à mes résas
+
+En tant que gérant du cowork
+
+- suivre les résa de tout le monde
+- annuler n’importe quelle resa
+
+Optionnel (V1)
+
+- pouvoir faire des résa de + d’1h
+- Je dois pouvoir mettre une salle non reservable pour différentes raisons (travaux, fuite, privatisation)
+- pouvoir acheter des crédits supplémentaires
+- pouvoir ajouter une option (vidéo proj, panier de fruit)
+
+---
+
+## 👤 Types d’abonnement
+
+Les membres du coworking peuvent avoir 2 abonnements :
+
+| Type | Nombre de crédits / mois |
+| --- | --- |
+| **Nomad** | Aucune réservation possible |
+| **Full Time** | 20 crédits/ mois |
+
+Les crédits se **renouvellent automatiquement chaque mois, et se cumulent d’un mois sur l’autre.**
+
+## 🏢 2. Types de salles
+
+L’espace propose plusieurs salles, chacune consommant un nombre de crédits différent :
+
+| Salle | Capacité | Type | Coût en crédits par heure |
+| --- | --- | --- | --- |
+| Phone Booth | 1 pers | Appels | 1 crédit / heure |
+| Small Room | 4 pers | Réunion | 2 crédits / heure |
+| Medium Room | 8 pers | Réunion | 3 crédits / heure |
+| Large Room | 16 pers | Conférence | 5 crédits / heure |
+</aside>
